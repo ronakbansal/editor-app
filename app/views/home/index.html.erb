@@ -1,0 +1,27 @@
+<form><textarea id="code" name="code">
+
+  </textarea></form>
+<br><input type="submit" id ="submit_button" value="Submit"><br>
+
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {mode: "text/html", lineNumbers: true});
+  $('#submit_button').click( function() {
+    var text = editor.doc.getValue();
+    var data = {
+      text: text
+    }
+    $.ajax({
+      type: "POST",
+      url: "/home/ide_one",
+      data: data,
+      dataType: "script",
+      success: function(){
+      },
+      error: function(data,status,e){
+        alert(e);
+      }
+    });
+
+  });
+</script>
